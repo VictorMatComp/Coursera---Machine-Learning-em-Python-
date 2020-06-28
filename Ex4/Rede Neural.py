@@ -18,7 +18,7 @@ for i in range(10):
     for j in range(10):
         axis[i,j].imshow(X[np.random.randint(0,5001),:].reshape(20,20,order="F"), cmap="binary") 
         axis[i,j].axis("off")
-#plt.show()
+plt.show()
 
 def sigmoid(z):
     
