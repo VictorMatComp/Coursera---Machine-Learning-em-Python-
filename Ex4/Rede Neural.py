@@ -3,7 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from scipy.io import loadmat
 from scipy.optimize import fmin_cg
-'''Credits for the user Benlau93 from GitHub for the most part of de code. I made just a few changes to make the optimization better.'''
+'''Credits for the user Benlau93 from GitHub for the most part of de code. I made some changes to make the optimization better.'''
 
 
 # Importando dados
@@ -27,7 +27,7 @@ def sigmoid(z):
 # Computando o custo da rede neural
 def nnCostFunction(nn_params,input_layer_size, hidden_layer_size, num_labels,X, y,Lambda):
     
-    # Reshape nn_params back into the parameters Theta1 and Theta2
+    # Reshape nn_params de volta para os parâmetros Theta1 e Theta2
     Theta1 = nn_params[:((input_layer_size+1) * hidden_layer_size)].reshape(hidden_layer_size,input_layer_size+1)
     Theta2 = nn_params[((input_layer_size +1)* hidden_layer_size ):].reshape(num_labels,hidden_layer_size+1)
     
@@ -53,11 +53,10 @@ def nnCostFunction(nn_params,input_layer_size, hidden_layer_size, num_labels,X, 
 
 # Computando o gradiente da rede neural
 def gradient(nn_params,input_layer_size, hidden_layer_size, num_labels,X, y,Lambda):
-    # Reshape nn_params back into the parameters Theta1 and Theta2
+    # Reshape nn_params de volta para os parâmetros Theta1 e Theta2
     Theta1 = nn_params[:((input_layer_size+1) * hidden_layer_size)].reshape(hidden_layer_size,input_layer_size+1)
     Theta2 = nn_params[((input_layer_size +1)* hidden_layer_size ):].reshape(num_labels,hidden_layer_size+1)
-    # Implement the backpropagation algorithm to compute the gradients
-
+    # Implementando o algoritmo backpropagation para obter o gradiente  
     m = X.shape[0]
     
     X = np.hstack((np.ones((m,1)),X))
