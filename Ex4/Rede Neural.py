@@ -3,7 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from scipy.io import loadmat
 from scipy.optimize import fmin_cg
-'''Credits for the user Benlau93 from GitHub for the most part of de code. I made just a few changes to make de optimization better.'''
+'''Credits for the user Benlau93 from GitHub for the most part of de code. I made just a few changes to make the optimization better.'''
 
 
 # Importando dados
