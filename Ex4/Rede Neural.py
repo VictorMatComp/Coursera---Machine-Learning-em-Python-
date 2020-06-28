@@ -12,7 +12,6 @@ mat = loadmat('D:\ex4\ex4data1.mat')
 X = mat["X"]
 y = mat["y"]
 
-
 # Visualizando os dados
 fig, axis = plt.subplots(10,10,figsize=(8,8))
 for i in range(10):
@@ -52,7 +51,6 @@ def nnCostFunction(nn_params,input_layer_size, hidden_layer_size, num_labels,X, 
     
     return reg_J
 
-
 # Computando o gradiente da rede neural
 def gradient(nn_params,input_layer_size, hidden_layer_size, num_labels,X, y,Lambda):
     # Reshape nn_params back into the parameters Theta1 and Theta2
@@ -68,7 +66,6 @@ def gradient(nn_params,input_layer_size, hidden_layer_size, num_labels,X, y,Lamb
     y10 = np.zeros((m,num_labels))
     J=0
     
-
     a1 = sigmoid(X @ Theta1.T)
     a1 = np.hstack((np.ones((m,1)), a1)) # hidden layer
     a2 = sigmoid(a1 @ Theta2.T) # output layer
@@ -86,15 +83,13 @@ def gradient(nn_params,input_layer_size, hidden_layer_size, num_labels,X, y,Lamb
         d1 = Theta2.T @ d2.T * sigmoidGradient(np.hstack((1,xi @ Theta1.T)))
         grad1= grad1 + d1[1:][:,np.newaxis] @ xi[:,np.newaxis].T
         grad2 = grad2 + d2.T[:,np.newaxis] @ a1i[:,np.newaxis].T
-        
-        
+             
     grad1 = 1/m * grad1
     grad2 = 1/m*grad2
     
     grad1_reg = grad1 + (Lambda/m) * np.hstack((np.zeros((Theta1.shape[0],1)),Theta1[:,1:]))
     grad2_reg = grad2 + (Lambda/m) * np.hstack((np.zeros((Theta2.shape[0],1)),Theta2[:,1:]))
     grad = np.concatenate((grad1_reg.flatten(),grad2_reg.flatten()))
-
 
     return grad
 
@@ -104,7 +99,6 @@ def sigmoidGradient(z):
     sigmoid = 1/(1 + np.exp(-z))
     
     return sigmoid *(1-sigmoid)
-
 
 # Inicializando os pesos de um layer com números aleatórios
 def randInitializeWeights(L_in, L_out):
@@ -133,7 +127,6 @@ args = (input_layer_size, hidden_layer_size, num_labels, X, y, Lambda)
 nnTheta=fmin_cg(nnCostFunction,x0=initial_nn_params, fprime=gradient, maxiter=100, args=args)
 Theta1 = nnTheta[:((input_layer_size+1) * hidden_layer_size)].reshape(hidden_layer_size,input_layer_size+1)
 Theta2 = nnTheta[((input_layer_size +1)* hidden_layer_size ):].reshape(num_labels,hidden_layer_size+1)
-
 
 def predict(Theta1, Theta2, X):
     
