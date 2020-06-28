@@ -99,7 +99,7 @@ def sigmoidGradient(z):
     
     return sigmoid *(1-sigmoid)
 
-# Inicializando os pesos de um layer com números aleatórios
+# Inicializando os coeficientes de um layer com números aleatórios
 def randInitializeWeights(L_in, L_out):
     
     epi = (6**1/2) / (L_in + L_out)**1/2
